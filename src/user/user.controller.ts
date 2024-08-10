@@ -23,9 +23,6 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   /**
-   * Post decorator represents method of request as we have used post decorator the method
-   * of this API will be post.
-   * so the API URL to create User will be
    * POST http://localhost:3000/user
    */
   @Post()
@@ -35,8 +32,6 @@ export class UserController {
   }
 
   /**
-   * we have used get decorator to get all the user's list
-   * so the API URL will be
    * GET http://localhost:3000/user
    */
   @Get()
@@ -45,8 +40,6 @@ export class UserController {
   }
 
   /**
-   * we have used get decorator with id param to get id from request
-   * so the API URL will be
    * GET http://localhost:3000/user/:id
    */
   @Get(':id')
@@ -55,8 +48,6 @@ export class UserController {
   }
 
   /**
-   * we have used patch decorator with id param to get id from request
-   * so the API URL will be
    * PATCH http://localhost:3000/user/:id
    */
   @Patch(':id')
@@ -65,8 +56,6 @@ export class UserController {
   }
 
   /**
-   * we have used Delete decorator with id param to get id from request
-   * so the API URL will be
    * DELETE http://localhost:3000/user/:id
    */
   @Delete(':id')

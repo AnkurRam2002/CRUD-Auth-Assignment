@@ -7,6 +7,11 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   //register route
+
+  /**
+   * POST http://localhost:3000/auth/register
+   */
+
   @Post('register')
   async register(
     @Body('name') name: string,
@@ -25,6 +30,11 @@ export class AuthController {
   }
 
   //login route
+
+  /**
+   * POST http://localhost:3000/auth/login
+   */
+
   @Post('login')
   async login(
     @Body('email') email: string,
