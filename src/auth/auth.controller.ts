@@ -1,10 +1,15 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import { Controller, Body, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private jwtService: JwtService,
+  ) {}
 
   //register route
 
@@ -39,6 +44,7 @@ export class AuthController {
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
+    @Res({ passthrough: true }) response: Response,
   ) {
     const user = await this.authService.login(email);
 
@@ -54,6 +60,13 @@ export class AuthController {
       return { message: 'Invalid credentials' };
     }
 
-    return user;
+    const jwt = this.jwtService.signAsync({ id: user.id });
+    return {
+      message: 'Success',
+      user,
+      token: (await jwt)
+    };
+    
+
   }
 }
